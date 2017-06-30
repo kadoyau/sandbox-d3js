@@ -18,8 +18,9 @@
         2. 設定したり取得したり
         text,attr,style,append,remove
         */
-        
-        d3.select("body").selectAll("p").text("hello from d3!");
+        p = d3.select("body").selectAll("p");
+        p.text("hello from d3!");
+        p.style("font-size", "28px");
 
 
     </script>
