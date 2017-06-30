@@ -19,19 +19,33 @@
         text,attr,style,append,remove
         */
         p = d3.select("body").selectAll("p");
-        p.text("hello from d3!")
-            .style("font-size", () => {
-                return Math.floor(Math.random()*29) + 'px'
-             });
-        
-        var dataset = [12, 24, 36];
-        p.data(dataset).text(
-            (d, i) => { // 第2引数はデータの要素番号が入る
-                return i + '番目は' + d;
+
+        /*
+        dataを使うタイミングで仮想領域が作られる
+
+        update: データに対して対応する要素がある場合 -> textなどでいじる
+        enter: データに対して対応する要素がない場合 -> append
+        exit: データに対して対応する要素が余った場合 -> remove
+        */
+
+        // データがp要素より多い場合
+        var dataset = [12, 24, 36, 48];
+
+        // dataに対応するp要素があれば内容を書き換える
+        var update = p.data(dataset);
+        update.text(
+            (d) => {
+                return "update: " + d;
+            }
+        );
+
+        // データに対応するp要素がなければappendする
+        var enter = update.enter();
+        enter.append("p").text(
+            (d) => {
+                return "enter: " + d;
             }
         )
-        
-
     </script>
 </body>
 </html>
