@@ -23,6 +23,12 @@
             .style("font-size", () => {
                 return Math.floor(Math.random()*29) + 'px'
              });
+        
+        // 要素の削除
+        d3.select("body").selectAll("p").remove();
+
+        // 要素の追加
+        d3.select("body").append("p").text("hoge 4");
 
     </script>
 </body>
