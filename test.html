@@ -7,7 +7,7 @@
 <body>
     <p>hoge 1</p>
     <p>hoge 2</p>
-    <p>hoge 2</p>
+    <p>hoge 3</p>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script>
         /*
@@ -29,7 +29,7 @@
         */
 
         // データがp要素より多い場合
-        var dataset = [12, 24, 36, 48];
+        var dataset = [12, 24];
 
         // dataに対応するp要素があれば内容を書き換える
         var update = p.data(dataset);
@@ -39,6 +39,11 @@
             }
         );
 
+        // データがp要素より足りなければ取り除く
+        var exit = update.exit();
+        exit.style("color", "red").remove();
+
+
         // データに対応するp要素がなければappendする
         var enter = update.enter();
         enter.append("p").text(
@@ -46,6 +51,7 @@
                 return "enter: " + d;
             }
         )
+
     </script>
 </body>
 </html>
