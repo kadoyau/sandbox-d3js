@@ -23,8 +23,16 @@
             .append("circle")
             .attr("cx", (d, i) => {return 50 + i * 100;})
             .attr("cy", h / 2)
-            .attr("r", (d) => {return d;})
-            .attr("fill", "red");
+            .attr("r", 0) // 半径の初期値は0
+            .attr("fill", "red")
+            .transition()
+            .delay((d, i) => { // 1つづつ表示させる
+                return i * 300;
+            })
+            .duration(1000) // 1妙でアニメーション
+            .ease(d3.easeBounce) // @see https://github.com/d3/d3-transition/blob/master/README.md#transition_ease
+            .attr("r", (d) => {return d;}); // 本来の半径へ
+
     </script>
 </body>
 </html>
