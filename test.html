@@ -24,11 +24,13 @@
                 return Math.floor(Math.random()*29) + 'px'
              });
         
-        // 要素の削除
-        d3.select("body").selectAll("p").remove();
-
-        // 要素の追加
-        d3.select("body").append("p").text("hoge 4");
+        var dataset = [12, 24, 36];
+        p.data(dataset).text(
+            (d, i) => { // 第2引数はデータの要素番号が入る
+                return i + '番目は' + d;
+            }
+        )
+        
 
     </script>
 </body>
